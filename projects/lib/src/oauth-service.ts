@@ -1197,9 +1197,7 @@ export class OAuthService extends AuthConfig {
         }
 
         this.createLoginUrl(additionalState, loginHint, null, false, addParams)
-            .then(function (url) {
-                location.href = url;
-            })
+            .then(this.config.openUri)
             .catch(error => {
                 console.error('Error in initImplicitFlow', error);
                 this.inImplicitFlow = false;
@@ -1766,7 +1764,7 @@ export class OAuthService extends AuthConfig {
                 (this.logoutUrl.indexOf('?') > -1 ? '&' : '?') +
                 params.toString();
         }
-        location.href = logoutUrl;
+        this.config.openUri(logoutUrl);
     }
 
     /**
