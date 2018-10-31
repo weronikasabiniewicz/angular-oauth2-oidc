@@ -33,7 +33,7 @@ export class OAuthModule {
         UrlHelperService,
         { provide: OAuthLogger, useFactory: createDefaultLogger },
         { provide: OAuthStorage, useFactory: createDefaultStorage },
-        { provide: ValidationHandler, useClass: validationHandlerClass},
+        { provide: ValidationHandler, useClass: validationHandlerClass },
         {
           provide: OAuthResourceServerErrorHandler,
           useClass: OAuthNoopResourceServerErrorHandler

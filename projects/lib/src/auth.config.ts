@@ -54,6 +54,8 @@ export class AuthConfig {
    */
   public logoutUrl? = '';
 
+  public logoutUrlIsHidden? = true;
+
   /**
    * Defines whether to clear the hash fragment after logging in.
    */
@@ -77,7 +79,7 @@ export class AuthConfig {
    * the verbosity of the console needs to be explicitly set
    * to include Debug level messages.
    */
-   public showDebugInformation? = false;
+  public showDebugInformation? = false;
 
   /**
    * The redirect uri used when doing silent refresh.
@@ -142,6 +144,12 @@ export class AuthConfig {
   public customQueryParams?: object = null;
 
   public silentRefreshIFrameName? = 'angular-oauth-oidc-silent-refresh-iframe';
+
+  /**
+   * If false (default), silent refresh will use IFrame component.
+   * Otherwise silet refresh open uri by openUri method.
+   */
+  public silentRefreshUseOpenUri? = false;
 
   /**
    * Defines when the token_timeout event should be raised.
@@ -227,7 +235,7 @@ export class AuthConfig {
    * allowing a way for implementations to specify their own method of routing to new
    * urls.
    */
-  public openUri?: ((uri: string) => void) = uri => {
+  public openUri?: ((uri: string, isHidden?: boolean) => void) = uri => {
     location.href = uri;
-  }
+  };
 }
